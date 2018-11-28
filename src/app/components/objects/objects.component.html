@@ -1,0 +1,49 @@
+<div class="w3-container" *ngIf="objectListData">
+  <div class="w3-panel w3-round-small w3-teal">
+    <h3>
+      Object List
+      <button routerLink="/add" class="w3-button w3-green custom-button">
+        <i class="w3-medium  fa fa-plus"></i> Add New Object
+      </button>
+    </h3>
+  </div>
+  <!--
+    <span
+      ><i class="w3-medium fa fa-search"></i> Search :
+      <input class="" type="text" [(ngModel)]="filterData"
+    /></span>
+  -->
+
+  <div
+    class="w3-panel w3-light-grey w3-padding-16 w3-card-2"
+    *ngIf="objectListData && objectListData.length"
+  >
+    <table class="w3-table w3-striped w3-bordered">
+      <tr>
+        <th><i class="w3-medium custom-icon fa fa-refresh"></i> ID</th>
+        <!-- <th>ID</th> -->
+        <th><i class="w3-medium custom-icon fa fa-user"></i> Name</th>
+        <th><i class="w3-medium custom-icon fa fa-user"></i> Title</th>
+
+        <th><i class="w3-medium custom-icon fa fa-pencil"></i> Update</th>
+        <th><i class="w3-medium custom-icon fa fa-trash"></i> Delete</th>
+      </tr>
+      <tr *ngFor="let object of objectListData; index as i" appHighlightobject>
+        <td>{{ i + 1 }}</td>
+        <td class="pointer" [routerLink]="['detail', i]">{{ object.name }}</td>
+
+        <td class="pointer" [routerLink]="['detail', i]">{{ object.title }}</td>
+        <td>
+          <button [routerLink]="['update', i]" class="w3-button w3-blue">
+            Update
+          </button>
+        </td>
+        <td>
+          <button (click)="deleteobject(i)" class="w3-button w3-red">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
